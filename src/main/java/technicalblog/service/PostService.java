@@ -37,4 +37,16 @@ public class PostService {
 
         return posts;
     }
+
+    public ArrayList<Post> getOnePost() {
+        ArrayList<Post> posts = new ArrayList<>();
+
+        Post post1 = new Post();
+        post1.setTitle("This is a single post title");
+        post1.setBody("This is the body of the single post");
+        post1.setDate(new Date());
+
+        posts.add(post1);
+        return posts;
+    }
 }
