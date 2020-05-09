@@ -1,9 +1,12 @@
 package technicalblog.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import technicalblog.model.Post;
+import technicalblog.service.PostService;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,29 +14,18 @@ import java.util.Date;
 @Controller
 public class HomeController {
 
+    public HomeController () {
+        System.out.println("########### Home Controller ###########");
+    }
+
+    @Autowired
+    private PostService postService;
+
+
     @RequestMapping("/")
-    public String gettAllPosts(Model model) {
+    public String getAllPosts(Model model) {
 
-        ArrayList<Post> posts = new ArrayList<>();
-
-        Post post1 = new Post();
-        post1.setTitle("Post1");
-        post1.setBody("Post body1");
-        post1.setDate(new Date());
-
-        Post post2 = new Post();
-        post2.setTitle("Post2");
-        post2.setBody("Post body2");
-        post2.setDate(new Date());
-
-        Post post3 = new Post();
-        post3.setTitle("Post3");
-        post3.setBody("Post body3");
-        post3.setDate(new Date());
-
-        posts.add(post1);
-        posts.add(post2);
-        posts.add(post3);
+        ArrayList<Post> posts = postService.getAllPosts();
 
         model.addAttribute("posts",posts);
 
